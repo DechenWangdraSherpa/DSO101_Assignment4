@@ -1,0 +1,30 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run tests
+      run: pytest test_app.py -v
+
+    - name: Deploy to Render
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      run: |
+        curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+        echo "✅ Deployment triggered on Render!"

@@ -234,6 +234,32 @@ services:
 
 ---
 
+## CI/CD Pipeline Verification
+
+To verify the pipeline works end-to-end, a small change was made to the application message in `app.py`:
+
+![alt text](Screenshots/11.1Changes.png) 
+
+![alt text](Screenshots/11.2.Changes.png)
+
+This change was committed and pushed to `master`, triggering the full pipeline automatically.
+
+![alt text](Screenshots/11.3.GitPush.png)
+
+GitHub Actions workflow passing
+
+![alt text](Screenshots/11.4..png)
+
+Render deployment automatically
+
+![alt text](Screenshots/11.5..png)
+
+The updated message
+
+![alt text](Screenshots/11.6.png)
+
+---
+
 ## Live App
 
 > **Live URL:** `https://dso101-assignment4-n8mk.onrender.com`
